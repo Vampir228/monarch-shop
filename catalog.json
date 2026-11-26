@@ -1,0 +1,42 @@
+{
+  "categories": [
+    {"id": "cardigans", "title": "Кардиганы", "title_uz": "Kardiganlar"},
+    {"id": "caps", "title": "Кепки", "title_uz": "Kepkalar"},
+    {"id": "glasses", "title": "Очки", "title_uz": "Ko'zoynaklar"},
+    {"id": "shoes", "title": "Обувь", "title_uz": "Poyabzal"}
+  ],
+  "products": [
+    {"id": "c1", "cat": "cardigans", "price": 420000, "sizes": ["S", "M", "L", "XL"], "photo": "",
+     "title": "Кардиган крупной вязки", "title_uz": "Yirik to'qilgan kardigan",
+     "description": "Объёмная вязка, свободный крой. Цвета: молочный, серый, чёрный.",
+     "description_uz": "Hajmli to'qima, erkin bichim. Ranglar: sutrang, kulrang, qora."},
+    {"id": "c2", "cat": "cardigans", "price": 380000, "sizes": ["S", "M", "L", "XL"], "photo": "",
+     "title": "Кардиган на пуговицах оверсайз", "title_uz": "Tugmali oversize kardigan",
+     "description": "Мягкая пряжа, крупные пуговицы. Цвета: бежевый, графит.",
+     "description_uz": "Yumshoq ip, katta tugmalar. Ranglar: bej, grafit."},
+    {"id": "c3", "cat": "cardigans", "price": 340000, "sizes": ["S", "M", "L", "XL"], "photo": "",
+     "title": "Кардиган с V-вырезом", "title_uz": "V-yoqali kardigan",
+     "description": "Тонкая вязка, классический силуэт. Цвета: чёрный, тёмно-синий.",
+     "description_uz": "Yupqa to'qima, klassik siluet. Ranglar: qora, to'q ko'k."},
+    {"id": "k1", "cat": "caps", "price": 150000, "sizes": ["ONE"], "photo": "",
+     "title": "Кепка", "title_uz": "Kepka",
+     "description": "Регулируемый размер. Цвета: чёрный, бежевый.",
+     "description_uz": "O'lchami sozlanadi. Ranglar: qora, bej."},
+    {"id": "g1", "cat": "glasses", "price": 220000, "sizes": ["ONE"], "photo": "",
+     "title": "Солнцезащитные очки", "title_uz": "Quyoshdan himoya ko'zoynagi",
+     "description": "Защита UV400. Чехол в комплекте.",
+     "description_uz": "UV400 himoya. G'ilofi bilan."},
+    {"id": "s1", "cat": "shoes", "price": 650000, "sizes": ["39", "40", "41", "42", "43", "44", "45"], "photo": "",
+     "title": "Челси", "title_uz": "Chelsi",
+     "description": "Ботинки челси на эластичных вставках. Цвета: чёрный, коричневый.",
+     "description_uz": "Elastik qo'shimchali chelsi botinkalari. Ranglar: qora, jigarrang."},
+    {"id": "s2", "cat": "shoes", "price": 750000, "sizes": ["39", "40", "41", "42", "43", "44", "45"], "photo": "",
+     "title": "Лоферы", "title_uz": "Loferlar",
+     "description": "Классические лоферы. Цвета: чёрный, коричневый.",
+     "description_uz": "Klassik loferlar. Ranglar: qora, jigarrang."},
+    {"id": "s3", "cat": "shoes", "price": 550000, "sizes": ["39", "40", "41", "42", "43", "44", "45"], "photo": "",
+     "title": "Кроссовки", "title_uz": "Krossovkalar",
+     "description": "Уточните модель и цвет в комментарии к заказу.",
+     "description_uz": "Model va rangni buyurtma izohida ko'rsating."}
+  ]
+}
