@@ -48,6 +48,12 @@ h2{font-weight:400;font-size:24px;line-height:1.2;margin:18px 0 4px}
 .sizes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
 .size{min-width:52px;height:44px;padding:0 14px;border:1px solid var(--line);background:none;border-radius:10px;cursor:pointer}
 .size.on{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.thumbs{display:flex;gap:8px;overflow-x:auto;padding:10px 0 2px;scrollbar-width:none}
+.thumbs::-webkit-scrollbar{display:none}
+.thumb{flex:none;width:58px;height:58px;border-radius:10px;border:1.5px solid transparent;padding:0;overflow:hidden;background:var(--card);cursor:pointer}
+.thumb.on{border-color:var(--ink)}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.label b{color:var(--ink);font-weight:500}
 .note{font-size:13px;color:var(--mut);display:flex;gap:8px;align-items:center}
 .note i{width:6px;height:6px;border-radius:50%;background:var(--gold);flex:none}
 .row{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
@@ -95,7 +101,7 @@ if (tg) { try { tg.ready(); tg.expand(); tg.setHeaderColor('#0f0f0e'); tg.setBac
 
 const I18N = {
  ru: {hero:'Вещи на заказ из Китая', heroSub:'Доставка 8–13 дней', all:'Все', linkT:'Нет нужной вещи?', linkS:'Закажите по ссылке: Poizon, Taobao, 1688',
-  size:'Размер', one:'Один размер', pick:'Выберите размер', add:'В корзину', added:'Добавлено в корзину', deliv:'Доставка 8–13 дней из Китая',
+  size:'Размер', color:'Цвет', one:'Один размер', pick:'Выберите размер', add:'В корзину', added:'Добавлено в корзину', deliv:'Доставка 8–13 дней из Китая',
   cart:'Корзина', empty:'Корзина пуста', toShop:'Перейти в каталог', total:'Итого', checkout:'Оформить', order:'Оформление', name:'Имя',
   phone:'Телефон', address:'Город и адрес', comment:'Комментарий (цвет, рост и вес)', confirm:'Подтвердить заказ',
   payNote:'После подтверждения бот пришлёт реквизиты для оплаты картой.', linkTitle:'Заказ по ссылке',
@@ -103,7 +109,7 @@ const I18N = {
   linkNote:'Менеджер рассчитает цену и пришлёт сумму к оплате в бот.', open:'Чтобы оформить заказ, откройте магазин кнопкой «🛍 Магазин» внизу чата с ботом.',
   outside:'Это предпросмотр в браузере: в Telegram заказ уйдёт в бот.', fill:'Заполните отмеченные поля', cur:'сум', items:'шт.', loadErr:'Не удалось загрузить каталог. Попробуйте позже.'},
  uz: {hero:'Xitoydan buyurtma asosida kiyimlar', heroSub:'Yetkazib berish 8–13 kun', all:'Hammasi', linkT:'Kerakli narsa yo\'qmi?', linkS:'Havola orqali buyurtma bering: Poizon, Taobao, 1688',
-  size:'O\'lcham', one:'Bitta o\'lcham', pick:'O\'lchamni tanlang', add:'Savatga', added:'Savatga qo\'shildi', deliv:'Xitoydan 8–13 kunda yetkazib beramiz',
+  size:'O\'lcham', color:'Rang', one:'Bitta o\'lcham', pick:'O\'lchamni tanlang', add:'Savatga', added:'Savatga qo\'shildi', deliv:'Xitoydan 8–13 kunda yetkazib beramiz',
   cart:'Savat', empty:'Savat bo\'sh', toShop:'Katalogga o\'tish', total:'Jami', checkout:'Rasmiylashtirish', order:'Rasmiylashtirish', name:'Ism',
   phone:'Telefon', address:'Shahar va manzil', comment:'Izoh (rang, bo\'y va vazn)', confirm:'Buyurtmani tasdiqlash',
   payNote:'Tasdiqlaganingizdan so\'ng bot karta orqali to\'lov rekvizitlarini yuboradi.', linkTitle:'Havola orqali buyurtma',
@@ -115,7 +121,7 @@ const store = {get(k,d){try{const v=localStorage.getItem('mn_'+k);return v?JSON.
 const urlLang = new URLSearchParams(location.search).get('lang');
 let lang = ['ru','uz'].includes(urlLang) ? urlLang : store.get('lang', (tg && tg.initDataUnsafe && tg.initDataUnsafe.user && tg.initDataUnsafe.user.language_code === 'uz') ? 'uz' : 'ru');
 const t = k => I18N[lang][k];
-let CAT = null, view = 'shop', cat = 'all', pid = null, size = null;
+let CAT = null, view = 'shop', cat = 'all', pid = null, size = null, color = null, shot = null;
 let cart = store.get('cart', []);            // [{id,size,qty}]
 let form = store.get('form', {name:'',phone:'',address:'',comment:''});
 let lform = {link:'', size:''};
@@ -132,7 +138,10 @@ const money = x => x.toLocaleString('ru-RU').replace(/ /g,' ') + ' ' + t('cur')
 const L = (o, k) => (lang === 'uz' && o[k + '_uz']) || o[k] || '';
 const P = id => CAT.products.find(p => p.id === id);
 const sizeLabel = s => s === 'ONE' ? t('one') : s;
-const photo = (p, cls='') => `<div class="ph ${cls}">${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(L(p,'title'))}" loading="lazy">` : markSvg}</div>`;
+const colorOf = (p, cid) => (p.colors || []).find(c => c.id === cid);
+const colorName = c => c ? (lang === 'uz' ? c.uz : c.ru) : '';
+const cover = (p, cid) => (colorOf(p, cid) || (p.colors || [])[0] || {}).photo || p.photo || '';
+const photo = (p, cls='', src) => { const s = src ?? cover(p); return `<div class="ph ${cls}">${s ? `<img src="${esc(s)}" alt="${esc(L(p,'title'))}" loading="lazy">` : markSvg}</div>`; };
 const haptic = () => { try { tg.HapticFeedback.impactOccurred('light'); } catch (e) {} };
 const save = () => { store.set('cart', cart); store.set('form', form); };
 const count = () => cart.reduce((a, i) => a + i.qty, 0);
@@ -140,7 +149,7 @@ const sum = () => cart.reduce((a, i) => { const p = P(i.id); return a + (p ? p.p
 function toast(msg){ const el=document.getElementById('toast'); el.textContent=msg; el.classList.add('on'); clearTimeout(toast.h); toast.h=setTimeout(()=>el.classList.remove('on'),1400); }
 function setCta(label, on, disabled=false){ cta.hidden=!on; ctaBtn.innerHTML=label; ctaBtn.disabled=disabled; }
 
-function go(v, extra){ view = v; if (extra) { pid = extra.pid ?? pid; size = null; } render(); window.scrollTo(0, 0); }
+function go(v, extra){ view = v; if (extra) { pid = extra.pid ?? pid; size = null; color = null; shot = null; } render(); window.scrollTo(0, 0); }
 function render(){
  document.documentElement.lang = lang;
  document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('on', b.dataset.l === lang));
@@ -164,22 +173,29 @@ function vShop(){
 }
 function vProduct(){
  const p = P(pid); if (!p) return go('shop');
- app.innerHTML = `${photo(p,'pbig')}<h2>${esc(L(p,'title'))}</h2><p class="price">${money(p.price)}</p><p class="desc">${esc(L(p,'description'))}</p>
+ const colors = p.colors || [];
+ if (!color && colors.length) color = colors[0].id;
+ if (p.sizes.length === 1 && !size) size = p.sizes[0];
+ const shots = [...colors.map(c => c.photo), ...(p.photos || [])];
+ const big = shot || cover(p, color);
+ app.innerHTML = `${photo(p,'pbig',big)}
+  ${shots.length > 1 ? `<div class="thumbs">${shots.map(s => `<button class="thumb ${s===big?'on':''}" data-shot="${esc(s)}"><img src="${esc(s)}" alt="" loading="lazy"></button>`).join('')}</div>` : ''}
+  <h2>${esc(L(p,'title'))}</h2><p class="price">${money(p.price)}</p><p class="desc">${esc(L(p,'description'))}</p>
+  ${colors.length ? `<p class="label">${t('color')}: <b>${esc(colorName(colorOf(p, color)))}</b></p><div class="sizes">${colors.map(c => `<button class="size ${c.id===color?'on':''}" data-color="${esc(c.id)}">${esc(colorName(c))}</button>`).join('')}</div>` : ''}
   <p class="label">${t('size')}</p><div class="sizes">${p.sizes.map(s => `<button class="size ${s===size?'on':''}" data-size="${esc(s)}">${esc(sizeLabel(s))}</button>`).join('')}</div>
   <p class="note"><i></i>${t('deliv')}</p>`;
- if (p.sizes.length === 1 && !size) { size = p.sizes[0]; app.querySelector('.size').classList.add('on'); }
  setCta(size ? t('add') : t('pick'), true, !size);
  ctaBtn.onclick = () => {
   if (!size) return;
-  const ex = cart.find(i => i.id === p.id && i.size === size);
-  ex ? ex.qty = Math.min(20, ex.qty + 1) : cart.push({id:p.id, size, qty:1});
+  const ex = cart.find(i => i.id === p.id && i.size === size && (i.color || null) === (color || null));
+  ex ? ex.qty = Math.min(20, ex.qty + 1) : cart.push({id:p.id, size, color, qty:1});
   save(); haptic(); toast(t('added')); go('shop');
  };
 }
 function vCart(){
  cart = cart.filter(i => P(i.id));
  if (!cart.length) { app.innerHTML = `<h2>${t('cart')}</h2><p class="empty">${t('empty')}</p>`; setCta(t('toShop'), true); ctaBtn.onclick = () => go('shop'); return; }
- app.innerHTML = `<h2>${t('cart')}</h2>${cart.map((i, k) => { const p = P(i.id); return `<div class="row">${photo(p)}<div><b>${esc(L(p,'title'))}</b><span>${esc(sizeLabel(i.size))} · ${money(p.price)}</span></div>
+ app.innerHTML = `<h2>${t('cart')}</h2>${cart.map((i, k) => { const p = P(i.id); const c = colorOf(p, i.color); return `<div class="row">${photo(p,'',cover(p, i.color))}<div><b>${esc(L(p,'title'))}</b><span>${c ? esc(colorName(c)) + ' · ' : ''}${esc(sizeLabel(i.size))} · ${money(p.price)}</span></div>
   <div class="qty"><button data-q="${k}" data-d="-1" aria-label="−">−</button><output>${i.qty}</output><button data-q="${k}" data-d="1" aria-label="+">+</button></div></div>`; }).join('')}
   <div class="total"><span>${t('total')}</span><b>${money(sum())}</b></div>`;
  setCta(`${t('checkout')} · ${money(sum())}`, true);
@@ -212,7 +228,7 @@ function vCheckout(){
  setCta(t('confirm'), true);
  ctaBtn.onclick = () => {
   readForm(); if (!validate(['name','phone','address'])) return;
-  const ok = submit({kind:'catalog', items:cart.map(i => ({id:i.id, size:i.size, qty:i.qty})),
+  const ok = submit({kind:'catalog', items:cart.map(i => ({id:i.id, size:i.size, color:i.color || null, qty:i.qty})),
    name:form.name.slice(0,64), phone:form.phone.slice(0,32), address:form.address.slice(0,200), comment:form.comment.slice(0,300)});
   if (ok) { cart = []; save(); }
  };
@@ -236,6 +252,8 @@ app.addEventListener('click', ev => {
  const c = ev.target.closest('[data-cat]'); if (c) { cat = c.dataset.cat; return render(); }
  const p = ev.target.closest('[data-p]'); if (p) return go('product', {pid: p.dataset.p});
  const s = ev.target.closest('[data-size]'); if (s) { size = s.dataset.size; return render(); }
+ const cl = ev.target.closest('[data-color]'); if (cl) { color = cl.dataset.color; shot = null; return render(); }
+ const sh = ev.target.closest('[data-shot]'); if (sh) { shot = sh.dataset.shot; const p = P(pid); const c = (p.colors || []).find(x => x.photo === shot); if (c) color = c.id; return render(); }
  const q = ev.target.closest('[data-q]'); if (q) { const i = cart[+q.dataset.q]; i.qty += +q.dataset.d; if (i.qty < 1) cart.splice(+q.dataset.q, 1); if (i.qty > 20) i.qty = 20; save(); haptic(); return render(); }
  const g = ev.target.closest('[data-go]'); if (g) return go(g.dataset.go);
 });
@@ -247,7 +265,13 @@ document.querySelectorAll('.lang button').forEach(b => b.onclick = () => {
  lang = b.dataset.l; store.set('lang', lang); render();
 });
 
-fetch('catalog.json?v=' + Date.now()).then(r => r.json()).then(d => { CAT = d; render(); })
+fetch('catalog.json?v=' + Date.now()).then(r => r.json()).then(d => {
+  // скрытые и товары без цены не показываем; пустые категории — тоже
+  d.products = d.products.filter(p => !p.hidden && p.price > 0);
+  d.categories = d.categories.filter(c => d.products.some(p => p.cat === c.id));
+  CAT = d;
+  cart = cart.filter(i => { const p = P(i.id); return p && p.sizes.includes(i.size) && (!p.colors || !p.colors.length || colorOf(p, i.color)); });
+  save(); render(); })
  .catch(() => { app.innerHTML = `<p class="empty">${t('loadErr')}</p>`; });
 render();
 }

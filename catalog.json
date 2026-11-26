@@ -1,42 +1,132 @@
 {
   "categories": [
     {"id": "cardigans", "title": "Кардиганы", "title_uz": "Kardiganlar"},
+    {"id": "knit", "title": "Свитеры и поло", "title_uz": "Sviterlar va polo"},
+    {"id": "jackets", "title": "Куртки", "title_uz": "Kurtkalar"},
+    {"id": "suits", "title": "Костюмы", "title_uz": "Kostyumlar"},
+    {"id": "shoes", "title": "Обувь", "title_uz": "Poyabzal"},
     {"id": "caps", "title": "Кепки", "title_uz": "Kepkalar"},
-    {"id": "glasses", "title": "Очки", "title_uz": "Ko'zoynaklar"},
-    {"id": "shoes", "title": "Обувь", "title_uz": "Poyabzal"}
+    {"id": "acc", "title": "Аксессуары", "title_uz": "Aksessuarlar"}
   ],
   "products": [
-    {"id": "c1", "cat": "cardigans", "price": 420000, "sizes": ["S", "M", "L", "XL"], "photo": "",
-     "title": "Кардиган крупной вязки", "title_uz": "Yirik to'qilgan kardigan",
-     "description": "Объёмная вязка, свободный крой. Цвета: молочный, серый, чёрный.",
-     "description_uz": "Hajmli to'qima, erkin bichim. Ranglar: sutrang, kulrang, qora."},
-    {"id": "c2", "cat": "cardigans", "price": 380000, "sizes": ["S", "M", "L", "XL"], "photo": "",
-     "title": "Кардиган на пуговицах оверсайз", "title_uz": "Tugmali oversize kardigan",
-     "description": "Мягкая пряжа, крупные пуговицы. Цвета: бежевый, графит.",
-     "description_uz": "Yumshoq ip, katta tugmalar. Ranglar: bej, grafit."},
-    {"id": "c3", "cat": "cardigans", "price": 340000, "sizes": ["S", "M", "L", "XL"], "photo": "",
-     "title": "Кардиган с V-вырезом", "title_uz": "V-yoqali kardigan",
-     "description": "Тонкая вязка, классический силуэт. Цвета: чёрный, тёмно-синий.",
-     "description_uz": "Yupqa to'qima, klassik siluet. Ranglar: qora, to'q ko'k."},
-    {"id": "k1", "cat": "caps", "price": 150000, "sizes": ["ONE"], "photo": "",
-     "title": "Кепка", "title_uz": "Kepka",
-     "description": "Регулируемый размер. Цвета: чёрный, бежевый.",
-     "description_uz": "O'lchami sozlanadi. Ranglar: qora, bej."},
-    {"id": "g1", "cat": "glasses", "price": 220000, "sizes": ["ONE"], "photo": "",
-     "title": "Солнцезащитные очки", "title_uz": "Quyoshdan himoya ko'zoynagi",
-     "description": "Защита UV400. Чехол в комплекте.",
-     "description_uz": "UV400 himoya. G'ilofi bilan."},
-    {"id": "s1", "cat": "shoes", "price": 650000, "sizes": ["39", "40", "41", "42", "43", "44", "45"], "photo": "",
-     "title": "Челси", "title_uz": "Chelsi",
-     "description": "Ботинки челси на эластичных вставках. Цвета: чёрный, коричневый.",
-     "description_uz": "Elastik qo'shimchali chelsi botinkalari. Ranglar: qora, jigarrang."},
-    {"id": "s2", "cat": "shoes", "price": 750000, "sizes": ["39", "40", "41", "42", "43", "44", "45"], "photo": "",
-     "title": "Лоферы", "title_uz": "Loferlar",
-     "description": "Классические лоферы. Цвета: чёрный, коричневый.",
-     "description_uz": "Klassik loferlar. Ranglar: qora, jigarrang."},
-    {"id": "s3", "cat": "shoes", "price": 550000, "sizes": ["39", "40", "41", "42", "43", "44", "45"], "photo": "",
-     "title": "Кроссовки", "title_uz": "Krossovkalar",
-     "description": "Уточните модель и цвет в комментарии к заказу.",
-     "description_uz": "Model va rangni buyurtma izohida ko'rsating."}
+    {"id": "card-cable", "cat": "cardigans", "price": 330000, "sizes": ["M", "L", "XL", "2XL", "3XL"],
+     "title": "Кардиган крупной вязки на молнии", "title_uz": "Molniyali yirik to'qilgan kardigan",
+     "description": "Объёмная вязка «косы», контрастные воротник и манжеты.",
+     "description_uz": "Hajmli «o'rim» to'qima, kontrast yoqa va manjetlar.",
+     "colors": [
+       {"id": "grey", "ru": "Серый", "uz": "Kulrang", "photo": "photos/cable-grey.jpg"},
+       {"id": "navy", "ru": "Тёмно-синий", "uz": "To'q ko'k", "photo": "photos/cable-navy.jpg"},
+       {"id": "beige", "ru": "Бежевый", "uz": "Bej", "photo": "photos/cable-beige.jpg"}]},
+
+    {"id": "card-zip", "cat": "cardigans", "price": 490000, "sizes": ["M", "L", "XL", "2XL", "3XL"],
+     "title": "Кардиган на молнии с контрастным воротником", "title_uz": "Kontrast yoqali molniyali kardigan",
+     "description": "Мягкая вязка, молния, контрастная отделка воротника и манжет. Хорошо сочетается с рубашкой.",
+     "description_uz": "Yumshoq to'qima, molniya, yoqa va manjetlarda kontrast bezak. Ko'ylak bilan yaxshi uyg'unlashadi.",
+     "colors": [
+       {"id": "navy", "ru": "Тёмно-синий", "uz": "To'q ko'k", "photo": "photos/zipcard-navy.jpg"},
+       {"id": "beige", "ru": "Бежевый", "uz": "Bej", "photo": "photos/zipcard-beige.jpg"}]},
+
+    {"id": "card-pattern", "cat": "cardigans", "price": 0, "hidden": true, "sizes": ["M", "L", "XL", "2XL", "3XL"],
+     "title": "Кардиган на молнии с фактурным узором", "title_uz": "Naqshli molniyali kardigan",
+     "description": "Рельефный узор, воротник-стойка, молния.",
+     "description_uz": "Bo'rtma naqsh, tik yoqa, molniya.",
+     "colors": [
+       {"id": "black", "ru": "Чёрный", "uz": "Qora", "photo": "photos/pattern-black.jpg"},
+       {"id": "brown", "ru": "Коричневый", "uz": "Jigarrang", "photo": "photos/pattern-brown.jpg"}]},
+
+    {"id": "polo", "cat": "knit", "price": 260000, "sizes": ["M", "L", "XL", "2XL", "3XL"],
+     "title": "Вязаное поло", "title_uz": "To'qilgan polo",
+     "description": "Рельефная вязка в рубчик, отложной воротник, длинный рукав.",
+     "description_uz": "Bo'rtma to'qima, qaytarma yoqa, uzun yeng.",
+     "colors": [
+       {"id": "grey", "ru": "Серый", "uz": "Kulrang", "photo": "photos/polo-grey.jpg"},
+       {"id": "graphite", "ru": "Графит", "uz": "Grafit", "photo": "photos/polo-graphite.jpg"},
+       {"id": "milk", "ru": "Молочный", "uz": "Sutrang", "photo": "photos/polo-milk.jpg"},
+       {"id": "brown", "ru": "Коричневый", "uz": "Jigarrang", "photo": "photos/polo-brown.jpg"}]},
+
+    {"id": "halfzip", "cat": "knit", "price": 0, "hidden": true, "sizes": ["M", "L", "XL", "2XL", "3XL"],
+     "title": "Свитер с воротником на молнии", "title_uz": "Yarim molniyali sviter",
+     "description": "Вязка в рубчик, воротник-стойка на короткой молнии.",
+     "description_uz": "Bo'rtma to'qima, qisqa molniyali tik yoqa.",
+     "colors": [
+       {"id": "dbrown", "ru": "Тёмно-коричневый", "uz": "To'q jigarrang", "photo": "photos/halfzip-1.jpg"},
+       {"id": "olive", "ru": "Оливковый", "uz": "Zaytun rang", "photo": "photos/halfzip-2.jpg"},
+       {"id": "grey", "ru": "Серый", "uz": "Kulrang", "photo": "photos/halfzip-3.jpg"},
+       {"id": "lgrey", "ru": "Светло-серый", "uz": "Och kulrang", "photo": "photos/halfzip-4.jpg"},
+       {"id": "brown", "ru": "Коричневый", "uz": "Jigarrang", "photo": "photos/halfzip-5.jpg"},
+       {"id": "khaki", "ru": "Хаки", "uz": "Xaki", "photo": "photos/halfzip-6.jpg"},
+       {"id": "black", "ru": "Чёрный", "uz": "Qora", "photo": "photos/halfzip-7.jpg"},
+       {"id": "navy", "ru": "Тёмно-синий", "uz": "To'q ko'k", "photo": "photos/halfzip-8.jpg"}]},
+
+    {"id": "jk-quilt", "cat": "jackets", "price": 360000, "sizes": ["M", "L", "XL", "2XL", "3XL"],
+     "title": "Стёганая куртка с трикотажными рукавами", "title_uz": "Trikotaj yengli qavima kurtka",
+     "description": "Стёганый перед, трикотажные рукава и воротник. Лёгкая, на межсезонье.",
+     "description_uz": "Qavima old qism, trikotaj yeng va yoqa. Yengil, mavsumlararo uchun.",
+     "colors": [
+       {"id": "blue", "ru": "Синий", "uz": "Ko'k", "photo": "photos/quilt-blue.jpg"},
+       {"id": "navy", "ru": "Тёмно-синий", "uz": "To'q ko'k", "photo": "photos/quilt-navy.jpg"}],
+     "photos": ["photos/quilt-navy-2.jpg"]},
+
+    {"id": "jk-winter", "cat": "jackets", "price": 590000, "sizes": ["M", "L", "XL", "2XL", "3XL"],
+     "title": "Зимняя стёганая куртка", "title_uz": "Qishki qavima kurtka",
+     "description": "Утеплённый стёганый перед, трикотажные рукава и воротник-стойка.",
+     "description_uz": "Issiq qavima old qism, trikotaj yenglar va tik yoqa.",
+     "colors": [
+       {"id": "brown", "ru": "Коричневый", "uz": "Jigarrang", "photo": "photos/winter-brown.jpg"},
+       {"id": "olive", "ru": "Оливковый", "uz": "Zaytun rang", "photo": "photos/winter-olive.jpg"}]},
+
+    {"id": "jk-puffer", "cat": "jackets", "price": 580000, "sizes": ["M", "L", "XL", "2XL", "3XL"],
+     "title": "Зимняя куртка с вельветовым воротником", "title_uz": "Velvet yoqali qishki kurtka",
+     "description": "Объёмная стёганая куртка, воротник из вельвета, трикотажные манжеты.",
+     "description_uz": "Hajmli qavima kurtka, velvet yoqa, trikotaj manjetlar.",
+     "colors": [
+       {"id": "brown", "ru": "Коричневый", "uz": "Jigarrang", "photo": "photos/puffer-brown.jpg"},
+       {"id": "black", "ru": "Чёрный", "uz": "Qora", "photo": "photos/puffer-black.jpg"}]},
+
+    {"id": "suit", "cat": "suits", "price": 600000, "sizes": ["M", "L", "XL", "2XL", "3XL"],
+     "title": "Костюм: кофта на молнии и брюки", "title_uz": "Kostyum: molniyali kofta va shim",
+     "description": "Трикотажный комплект: кофта с воротником-стойкой на молнии и брюки на шнурке.",
+     "description_uz": "Trikotaj to'plam: tik yoqali molniyali kofta va bog'ichli shim.",
+     "colors": [
+       {"id": "black", "ru": "Чёрный", "uz": "Qora", "photo": "photos/suit-black.jpg"},
+       {"id": "beige", "ru": "Бежевый", "uz": "Bej", "photo": "photos/suit-beige.jpg"}]},
+
+    {"id": "chelsea", "cat": "shoes", "price": 620000, "sizes": ["38", "39", "40", "41", "42", "43", "44"],
+     "title": "Ботинки челси", "title_uz": "Chelsi botinkalari",
+     "description": "Классические челси с эластичными вставками и прочной подошвой.",
+     "description_uz": "Elastik qo'shimchali va mustahkam tagli klassik chelsi.",
+     "colors": [
+       {"id": "black", "ru": "Чёрный", "uz": "Qora", "photo": "photos/chelsea-black.jpg"},
+       {"id": "brown", "ru": "Коричневый", "uz": "Jigarrang", "photo": "photos/chelsea-brown.jpg"}],
+     "photos": ["photos/chelsea-black-2.jpg"]},
+
+    {"id": "loafers", "cat": "shoes", "price": 650000, "sizes": ["38", "39", "40", "41", "42", "43", "44"],
+     "title": "Кожаные лоферы", "title_uz": "Charm loferlar",
+     "description": "Классические лоферы с накладкой, гладкая кожа.",
+     "description_uz": "Ustqo'yma bezakli klassik loferlar, silliq charm.",
+     "colors": [
+       {"id": "black", "ru": "Чёрный", "uz": "Qora", "photo": "photos/loafers-black.jpg"}],
+     "photos": ["photos/loafers-black-2.jpg", "photos/loafers-black-3.jpg"]},
+
+    {"id": "cap", "cat": "caps", "price": 0, "hidden": true, "sizes": ["ONE"],
+     "title": "Тёплая кепка", "title_uz": "Issiq kepka",
+     "description": "Плотная ткань, регулируемый размер.",
+     "description_uz": "Qalin mato, o'lchami sozlanadi.",
+     "colors": [
+       {"id": "camel", "ru": "Кэмел", "uz": "Tuya junidek", "photo": "photos/cap-1.jpg"},
+       {"id": "brown", "ru": "Коричневый", "uz": "Jigarrang", "photo": "photos/cap-2.jpg"},
+       {"id": "lgrey", "ru": "Светло-серый", "uz": "Och kulrang", "photo": "photos/cap-3.jpg"},
+       {"id": "dgrey", "ru": "Тёмно-серый", "uz": "To'q kulrang", "photo": "photos/cap-4.jpg"},
+       {"id": "beige", "ru": "Бежевый", "uz": "Bej", "photo": "photos/cap-5.jpg"}]},
+
+    {"id": "clutch", "cat": "acc", "price": 460000, "sizes": ["ONE"],
+     "title": "Клатч-кошелёк", "title_uz": "Klatch-hamyon",
+     "description": "Компактный клатч с металлической застёжкой, в подарочной коробке.",
+     "description_uz": "Metall qulfli ixcham klatch, sovg'a qutisida.",
+     "colors": [
+       {"id": "black", "ru": "Чёрный", "uz": "Qora", "photo": "photos/clutch-black.jpg"},
+       {"id": "taupe", "ru": "Серо-бежевый", "uz": "Kulrang-bej", "photo": "photos/clutch-taupe.jpg"},
+       {"id": "burgundy", "ru": "Бордовый", "uz": "Bordo", "photo": "photos/clutch-burgundy.jpg"},
+       {"id": "milk", "ru": "Молочный", "uz": "Sutrang", "photo": "photos/clutch-milk.jpg"}]}
   ]
 }
