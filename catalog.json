@@ -26,7 +26,7 @@
        {"id": "navy", "ru": "Тёмно-синий", "uz": "To'q ko'k", "photo": "photos/zipcard-navy.jpg"},
        {"id": "beige", "ru": "Бежевый", "uz": "Bej", "photo": "photos/zipcard-beige.jpg"}]},
 
-    {"id": "card-pattern", "cat": "cardigans", "price": 0, "hidden": true, "sizes": ["M", "L", "XL", "2XL", "3XL"],
+    {"id": "card-pattern", "cat": "cardigans", "price": 500000, "sizes": ["M", "L", "XL", "2XL", "3XL"],
      "title": "Кардиган на молнии с фактурным узором", "title_uz": "Naqshli molniyali kardigan",
      "description": "Рельефный узор, воротник-стойка, молния.",
      "description_uz": "Bo'rtma naqsh, tik yoqa, molniya.",
@@ -44,7 +44,7 @@
        {"id": "milk", "ru": "Молочный", "uz": "Sutrang", "photo": "photos/polo-milk.jpg"},
        {"id": "brown", "ru": "Коричневый", "uz": "Jigarrang", "photo": "photos/polo-brown.jpg"}]},
 
-    {"id": "halfzip", "cat": "knit", "price": 0, "hidden": true, "sizes": ["M", "L", "XL", "2XL", "3XL"],
+    {"id": "halfzip", "cat": "knit", "price": 330000, "sizes": ["M", "L", "XL", "2XL", "3XL"],
      "title": "Свитер с воротником на молнии", "title_uz": "Yarim molniyali sviter",
      "description": "Вязка в рубчик, воротник-стойка на короткой молнии.",
      "description_uz": "Bo'rtma to'qima, qisqa molniyali tik yoqa.",
@@ -108,7 +108,7 @@
        {"id": "black", "ru": "Чёрный", "uz": "Qora", "photo": "photos/loafers-black.jpg"}],
      "photos": ["photos/loafers-black-2.jpg", "photos/loafers-black-3.jpg"]},
 
-    {"id": "cap", "cat": "caps", "price": 0, "hidden": true, "sizes": ["ONE"],
+    {"id": "cap", "cat": "caps", "price": 210000, "sizes": ["ONE"],
      "title": "Тёплая кепка", "title_uz": "Issiq kepka",
      "description": "Плотная ткань, регулируемый размер.",
      "description_uz": "Qalin mato, o'lchami sozlanadi.",
